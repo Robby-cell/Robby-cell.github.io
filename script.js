@@ -47,11 +47,12 @@ const convertToProject = (project) => {
 /**
  * Fill the portfolio projects section.
  *
- * @param {string} url Source url for get all the projects (projects.json file URL)
+ * @param {any} url Source url for get all the projects (projects.json file URL)
  */
 async function fillPortfolio(url) { // Make the function async
     try {
         const response = await fetch(url); // Fetch the JSON data
+        console.log(response);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -85,6 +86,5 @@ async function fillPortfolio(url) { // Make the function async
 
 // Call fillPortfolio when the script runs.
 // Replace with the RAW URL to your projects.json file in your new repository!
-const projectsJsonUrl =
-    "https://github.com/Robby-cell/Robby-cell.github.io/projects.json";
+const projectsJsonUrl = "https://robby-cell.github.io/projects.json";
 fillPortfolio(projectsJsonUrl);

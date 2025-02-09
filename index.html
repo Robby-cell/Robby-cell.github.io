@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robert</title>
-
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" defer></script>
-</head>
-
+    <title>Your Name - Portfolio</title> <link rel="stylesheet" href="style.css"> </head>
 <body>
-    <h1>
-        Sample text!
-    </h1>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Currently a second year student in Computer Science at Queen's University Belfast.</p>
+            <a href="#portfolio" class="button">View My Work</a>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Computer Science student.</p>
+        </section>
+
+        <section id="portfolio">
+            <!-- Will fill this with js -->
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out!</p>
+
+            <div>
+                <!-- Email Icon (Feather Icon SVG Code - Example) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <a href="mailto:robert11122002@gmail.com">robert11122002@gmail.com</a>
+            </div>
+
+            <div>
+                <!-- LinkedIn Icon (Feather Icon SVG Code - Example) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                <a href="https://www.linkedin.com/in/robert-williamson-51bb1322b/">LinkedIn Profile</a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Robert Williamson. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,71 @@
+body {
+    font-family: sans-serif; /* A simple sans-serif font */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    line-height: 1.6; /* Improve text readability */
+    color: #333; /* Dark grey text color */
+}
+
+header {
+    background-color: #f0f0f0; /* Light grey header background */
+    padding: 1rem 0; /* Padding top and bottom */
+}
+
+nav ul {
+    list-style: none; /* Remove bullet points from list */
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center navigation links */
+}
+
+nav li {
+    display: inline; /* Display list items horizontally */
+    margin: 0 1rem; /* Spacing between navigation links */
+}
+
+nav a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #333; /* Link color */
+    font-weight: bold; /* Bold links */
+}
+
+main {
+    padding: 2rem; /* Padding around the main content */
+    max-width: 960px; /* Limit content width for better readability on larger screens */
+    margin: 0 auto; /* Center the main content on the page */
+}
+
+section {
+    margin-bottom: 2rem; /* Spacing between sections */
+}
+
+h1, h2, h3 {
+    margin-top: 0; /* Remove default top margin from headings */
+}
+
+.project {
+    border: 1px solid #ccc; /* Light grey border for project boxes */
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 1px solid #ccc; /* Add a top border to the footer */
+}
+
+.button {
+    display: inline-block; /* Make button behave like an inline-block element */
+    padding: 0.75rem 1.5rem; /* Padding inside the button */
+    background-color: #007bff; /* Blue button background */
+    color: white; /* White button text */
+    text-decoration: none; /* Remove underline from button link */
+    border-radius: 5px; /* Rounded corners for the button */
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
