@@ -52,7 +52,6 @@ const convertToProject = (project) => {
 async function fillPortfolio(url) { // Make the function async
     try {
         const response = await fetch(url); // Fetch the JSON data
-        console.log(response);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
