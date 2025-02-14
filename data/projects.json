@@ -30,6 +30,8 @@
             "}"
         ],
         "language": "cpp",
-        "imageSources": []
+        "imageSources": [
+            "data/images/assert-example.png"
+        ]
     }
 ]
