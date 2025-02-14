@@ -4,6 +4,7 @@
  *  url: string,
  *  description: string,
  *  codeSnippet: string[],
+ *  language: string,
  *  imageSources: string[],
  * }} Project
  */
@@ -15,7 +16,7 @@ const PROJECT_CLASSES = ["project-container"];
 const PROJECT_NAME_CLASSES = ["project-name"];
 const PROJECT_IMAGES_CONTAINER_CLASSES = ["project-images-container"];
 const PROJECT_IMAGE_CLASSES = ["project-image"];
-const PROJECT_CODE_SNIPPET_CLASSES = ["language-cpp"];
+const PROJECT_CODE_SNIPPET_CLASSES = [];
 
 /**
  * @param {Project} project
@@ -40,10 +41,16 @@ const convertToProject = (project) => {
     codeSnippetMessage.innerText = "Sample code:";
     codeSnippetContainer.appendChild(codeSnippetMessage);
 
-    const codeSnippetElement = document.createElement("pre");
-    codeSnippetElement.classList.add(...PROJECT_CODE_SNIPPET_CLASSES);
-    codeSnippetElement.innerText = project.codeSnippet.join("\n");
-    codeSnippetContainer.appendChild(codeSnippetElement);
+    const codeSnippetElementContainer = document.createElement("pre");
+    const codeSnippetElement = document.createElement("code");
+    codeSnippetElement.classList.add(
+        ...PROJECT_CODE_SNIPPET_CLASSES,
+        `language-${project.language}`,
+    );
+    const code = project.codeSnippet.join("\n");
+    codeSnippetElement.innerText = code;
+    codeSnippetElementContainer.appendChild(codeSnippetElement);
+    codeSnippetContainer.appendChild(codeSnippetElementContainer);
 
     p.appendChild(codeSnippetContainer);
 

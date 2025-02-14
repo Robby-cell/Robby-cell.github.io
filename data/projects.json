@@ -11,6 +11,7 @@
             "\tstd::cout << str;",
             "}"
         ],
+        "language": "cpp",
         "imageSources": []
     },
     {
@@ -28,6 +29,7 @@
             "\tASSERT(a - b > 0);  // Assertion that should FAIL",
             "}"
         ],
+        "language": "cpp",
         "imageSources": []
     }
 ]
