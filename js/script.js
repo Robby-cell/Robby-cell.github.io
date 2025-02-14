@@ -3,17 +3,23 @@
  *  name: string,
  *  url: string,
  *  description: string,
+ *  codeSnippet: string[],
  *  imageSources: string[],
  * }} Project
  */
+
+// projects to show.
+const projectsJsonUrl = "https://robby-cell.github.io/data/projects.json";
 
 const PROJECT_CLASSES = ["project-container"];
 const PROJECT_NAME_CLASSES = ["project-name"];
 const PROJECT_IMAGES_CONTAINER_CLASSES = ["project-images-container"];
 const PROJECT_IMAGE_CLASSES = ["project-image"];
+const PROJECT_CODE_SNIPPET_CLASSES = ["language-cpp"];
 
 /**
  * @param {Project} project
+ * @returns {HTMLDivElement}
  */
 const convertToProject = (project) => {
     const p = document.createElement("div");
@@ -28,6 +34,11 @@ const convertToProject = (project) => {
     const descriptionElement = document.createElement("p");
     descriptionElement.innerText = project.description;
     p.appendChild(descriptionElement);
+
+    const codeSnippetElement = document.createElement("code");
+    codeSnippetElement.classList.add(...PROJECT_CODE_SNIPPET_CLASSES);
+    codeSnippetElement.innerText = project.codeSnippet.join("\n");
+    p.appendChild(codeSnippetElement);
 
     if (project.imageSources && project.imageSources.length > 0) {
         const imagesElement = document.createElement("div");
@@ -83,7 +94,4 @@ async function fillPortfolio(url) { // Make the function async
     }
 }
 
-// Call fillPortfolio when the script runs.
-// Replace with the RAW URL to your projects.json file in your new repository!
-const projectsJsonUrl = "https://robby-cell.github.io/projects.json";
 fillPortfolio(projectsJsonUrl);

@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Space",
+        "url": "https://github.com/Robby-cell/Space",
+        "description": "A basic implementation of the string container, like std::string. Has features like small string optimization (SSO), custom allocator support and iterators. Also provides some compatibility with standard library concepts, like ostream.",
+        "codeSnippet": [
+            "#include <iostream>",
+            "#include \"space/string.hpp\"",
+            "int main() {",
+            "   Space::String str{\"Hello, world!\"};",
+            "   std::cout << str;",
+            "}"
+        ],
+        "imageSources": []
+    },
+    {
+        "name": "Assert",
+        "url": "https://github.com/Robby-cell/Assert",
+        "description": "Readable and powerful C++ assertions. Simple C++ framework that allows testing. Includes detailed error messages, expressive assertions and structured test organization.",
+        "codeSnippet": [
+            "#include \"Assert/Assert.hpp\"",
+            "TEST_CASE(\"Integer Addition Test\") {",
+            "  int a = 5;",
+            "  int b = 10;",
+            "  ASSERT(a + b == 15); // Assertion that should pass",
+            "  ASSERT(a + b != 20); // Another assertion that should pass",
+            "  ASSERT(a * b == 50); // Assertion that should pass",
+            "  ASSERT(a - b > 0);  // Assertion that should FAIL",
+            "}"
+        ],
+        "imageSources": []
+    }
+]
