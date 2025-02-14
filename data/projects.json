@@ -7,8 +7,8 @@
             "#include <iostream>",
             "#include \"space/string.hpp\"",
             "int main() {",
-            "   Space::String str{\"Hello, world!\"};",
-            "   std::cout << str;",
+            "\tSpace::String str{\"Hello, world!\"};",
+            "\tstd::cout << str;",
             "}"
         ],
         "imageSources": []
@@ -20,12 +20,12 @@
         "codeSnippet": [
             "#include \"Assert/Assert.hpp\"",
             "TEST_CASE(\"Integer Addition Test\") {",
-            "  int a = 5;",
-            "  int b = 10;",
-            "  ASSERT(a + b == 15); // Assertion that should pass",
-            "  ASSERT(a + b != 20); // Another assertion that should pass",
-            "  ASSERT(a * b == 50); // Assertion that should pass",
-            "  ASSERT(a - b > 0);  // Assertion that should FAIL",
+            "\tint a = 5;",
+            "\tint b = 10;",
+            "\tASSERT(a + b == 15); // Assertion that should pass",
+            "\tASSERT(a + b != 20); // Another assertion that should pass",
+            "\tASSERT(a * b == 50); // Assertion that should pass",
+            "\tASSERT(a - b > 0);  // Assertion that should FAIL",
             "}"
         ],
         "imageSources": []

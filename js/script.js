@@ -35,10 +35,17 @@ const convertToProject = (project) => {
     descriptionElement.innerText = project.description;
     p.appendChild(descriptionElement);
 
-    const codeSnippetElement = document.createElement("code");
+    const codeSnippetContainer = document.createElement("div");
+    const codeSnippetMessage = document.createElement("p");
+    codeSnippetMessage.innerText = "Sample code:";
+    codeSnippetContainer.appendChild(codeSnippetMessage);
+
+    const codeSnippetElement = document.createElement("pre");
     codeSnippetElement.classList.add(...PROJECT_CODE_SNIPPET_CLASSES);
     codeSnippetElement.innerText = project.codeSnippet.join("\n");
-    p.appendChild(codeSnippetElement);
+    codeSnippetContainer.appendChild(codeSnippetElement);
+
+    p.appendChild(codeSnippetContainer);
 
     if (project.imageSources && project.imageSources.length > 0) {
         const imagesElement = document.createElement("div");
