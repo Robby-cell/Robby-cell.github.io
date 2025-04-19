@@ -108,7 +108,7 @@ const convertToProject = (project) => {
             const imageElement = document.createElement("img");
             imageElement.classList.add(...PROJECT_IMAGE_CLASSES);
             imageElement.src = imageSrc;
-            imagesElement.appendChild(imageElement); // Corrected: Append to imagesElement, not imageElement
+            imagesElement.appendChild(imageElement);
         }
         p.appendChild(imagesElement);
     }
