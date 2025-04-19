@@ -83,23 +83,25 @@ const convertToProject = (project) => {
     descriptionElement.innerText = project.description;
     p.appendChild(descriptionElement);
 
-    const codeSnippetContainer = document.createElement("div");
-    const codeSnippetMessage = document.createElement("p");
-    codeSnippetMessage.innerText = "Sample code:";
-    codeSnippetContainer.appendChild(codeSnippetMessage);
+    if (project.codeSnippet !== undefined) {
+        const codeSnippetContainer = document.createElement("div");
+        const codeSnippetMessage = document.createElement("p");
+        codeSnippetMessage.innerText = "Sample code:";
+        codeSnippetContainer.appendChild(codeSnippetMessage);
 
-    const codeSnippetElementContainer = document.createElement("pre");
-    const codeSnippetElement = document.createElement("code");
-    codeSnippetElement.classList.add(
-        ...PROJECT_CODE_SNIPPET_CLASSES,
-        `language-${project.language}`,
-    );
-    const code = project.codeSnippet.join("\n");
-    codeSnippetElement.innerText = code;
-    codeSnippetElementContainer.appendChild(codeSnippetElement);
-    codeSnippetContainer.appendChild(codeSnippetElementContainer);
+        const codeSnippetElementContainer = document.createElement("pre");
+        const codeSnippetElement = document.createElement("code");
+        codeSnippetElement.classList.add(
+            ...PROJECT_CODE_SNIPPET_CLASSES,
+            `language-${project.language}`,
+        );
+        const code = project.codeSnippet.join("\n");
+        codeSnippetElement.innerText = code;
+        codeSnippetElementContainer.appendChild(codeSnippetElement);
+        codeSnippetContainer.appendChild(codeSnippetElementContainer);
 
-    p.appendChild(codeSnippetContainer);
+        p.appendChild(codeSnippetContainer);
+    }
 
     if (project.imageSources && project.imageSources.length > 0) {
         const imagesElement = document.createElement("div");
