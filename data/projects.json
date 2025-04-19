@@ -1,5 +1,12 @@
 [
     {
+        "name": "Git App",
+        "url": "https://github.com/Robby-cell/git-app",
+        "description": "A simple git client that allows you to manage git repositories through a graphical interface.",
+        "language": "python",
+        "imageSources": []
+    },
+    {
         "name": "Space",
         "url": "https://github.com/Robby-cell/Space",
         "description": "A basic implementation of the string container, like std::string. Has features like small string optimization (SSO), custom allocator support and iterators. Also provides some compatibility with standard library concepts, like ostream.",

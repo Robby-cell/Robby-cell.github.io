@@ -69,3 +69,31 @@ footer {
 .button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
+#language-tabs {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.language-tab {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #f0f0f0;
+    display: flex;
+}
+
+.language-tab.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Hide projects when filtered */
+.project-container.hidden {
+    display: none;
+}
