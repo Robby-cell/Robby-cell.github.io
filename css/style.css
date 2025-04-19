@@ -94,6 +94,6 @@ footer {
 }
 
 /* Hide projects when filtered */
-.projects-container.hidden {
+.hidden {
     display: none;
 }

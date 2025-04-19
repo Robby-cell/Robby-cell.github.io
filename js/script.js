@@ -12,7 +12,7 @@
 // projects to show.
 const projectsJsonUrl = "https://robby-cell.github.io/data/projects.json";
 
-const PROJECT_CLASSES = ["projects-container"];
+const PROJECT_CLASSES = ["project-container"];
 const PROJECT_NAME_CLASSES = ["project-name"];
 const PROJECT_IMAGES_CONTAINER_CLASSES = ["project-images-container"];
 const PROJECT_IMAGE_CLASSES = ["project-image"];
@@ -54,8 +54,9 @@ const setupLanguageTabs = (projects) => {
 
         // Filter projects
         const selectedLanguage = tab.dataset.language;
-        document.querySelectorAll('.projects-container').forEach(project => {
-            if (selectedLanguage === 'all' || project.dataset.language === selectedLanguage) {
+        document.querySelectorAll('.project-container').forEach(project => {
+            if (selectedLanguage === 'all' ||
+                project.dataset.language === selectedLanguage) {
                 project.classList.remove('hidden');
             } else {
                 project.classList.add('hidden');
