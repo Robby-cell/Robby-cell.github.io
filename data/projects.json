@@ -4,7 +4,9 @@
         "url": "https://github.com/Robby-cell/git-app",
         "description": "A simple git client that allows you to manage git repositories through a graphical interface.",
         "language": "python",
-        "imageSources": []
+        "imageSources": [
+            "https://github.com/Robby-cell/git-app/raw/main/assets/image.png"
+        ]
     },
     {
         "name": "Space",
