@@ -1,14 +1,3 @@
-/**
- * @typedef {{
- *  name: string,
- *  url: string,
- *  description: string,
- *  codeSnippet: string[],
- *  language: string,
- *  imageSources: string[],
- * }} Project
- */
-
 // projects to show.
 const projectsJsonUrl = "https://robby-cell.github.io/data/projects.json";
 
@@ -16,7 +5,7 @@ const PROJECT_CLASSES = ["project-container"];
 const PROJECT_NAME_CLASSES = ["project-name"];
 const PROJECT_IMAGES_CONTAINER_CLASSES = ["project-images-container"];
 const PROJECT_IMAGE_CLASSES = ["project-image"];
-const PROJECT_CODE_SNIPPET_CLASSES = [];
+const PROJECT_CODE_SNIPPET_CLASSES = ["project-code-snippet"];
 
 /**
  * Creates language filter tabs and sets up filtering functionality
