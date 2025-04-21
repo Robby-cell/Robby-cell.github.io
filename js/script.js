@@ -55,10 +55,12 @@ const setupLanguageTabs = (projects) => {
 };
 
 /**
+ * Converts a project object to an HTML element.
+ * 
  * @param {Project} project
  * @returns {HTMLDivElement}
  */
-const convertToProject = (project) => {
+const convertToProjectElement = (project) => {
     const p = document.createElement("div");
     p.classList.add(...PROJECT_CLASSES);
     p.dataset.language = project.language;
@@ -111,7 +113,7 @@ const convertToProject = (project) => {
 /**
  * Fill the portfolio projects section.
  *
- * @param {any} url Source url for get all the projects (projects.json file URL)
+ * @param {string} url Source url for get all the projects (projects.json file URL)
  */
 async function fillPortfolio(url) {
     const portfolioSection = document.getElementById("portfolio");
@@ -140,7 +142,7 @@ async function fillPortfolio(url) {
 
         // Add projects
         for (const projectData of projects) {
-            const projectElement = convertToProject(projectData);
+            const projectElement = convertToProjectElement(projectData);
             projectsContainer.appendChild(projectElement);
         }
     } catch (error) {
