@@ -114,6 +114,16 @@ const convertToProject = (project) => {
  * @param {any} url Source url for get all the projects (projects.json file URL)
  */
 async function fillPortfolio(url) {
+    const portfolioSection = document.getElementById("portfolio");
+    const tabsContainer = document.getElementById('language-tabs');
+    const projectsContainer = portfolioSection?.querySelector('.projects-container');
+    const loadingMessage = projectsContainer?.querySelector('.loading-message');
+
+    if (!portfolioSection || !tabsContainer || !projectsContainer || !loadingMessage) {
+        console.error("Required portfolio elements not found in the HTML.");
+        return;
+    }
+
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -121,20 +131,9 @@ async function fillPortfolio(url) {
         }
         const projects = await response.json();
 
-        const portfolioSection = document.getElementById("portfolio");
-        if (!portfolioSection) {
-            console.error("Portfolio section not found in index.html");
-            return;
-        }
-
-        // Clear and set up the portfolio section
-        portfolioSection.innerHTML = "<h2>My Portfolio</h2>";
-        const tabsContainer = document.createElement('div');
-        tabsContainer.id = 'language-tabs';
-        portfolioSection.appendChild(tabsContainer);
-        const projectsContainer = document.createElement('div');
-        projectsContainer.classList.add('projects-container');
-        portfolioSection.appendChild(projectsContainer);
+        // Clear loading message and tabs container before adding content
+        loadingMessage.remove();
+        tabsContainer.innerHTML = ''; // Clear any previous tabs if re-running
 
         // Set up language tabs
         setupLanguageTabs(projects);
@@ -146,11 +145,9 @@ async function fillPortfolio(url) {
         }
     } catch (error) {
         console.error("Could not fetch portfolio projects:", error);
-        const portfolioSection = document.getElementById("portfolio");
-        if (portfolioSection) {
-            const errorMessage = document.createElement("p");
-            errorMessage.innerText = "Failed to load portfolio projects. Please try again later.";
-            portfolioSection.appendChild(errorMessage);
+        if (projectsContainer) {
+            // Replace loading message with error message
+            projectsContainer.innerHTML = `<p class="error-message">Failed to load portfolio projects. Please try again later.</p>`;
         }
     }
 }
