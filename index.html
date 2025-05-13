@@ -8,16 +8,8 @@
         content="Personal portfolio of Robert Williamson, a Computer Science student at Queen's University Belfast, showcasing projects and skills.">
     <title>Robert Williamson</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Icon for the page -->
     <link rel="icon" href="data/images/favicon.ico" type="image/x-icon">
-
-    <!-- Prism.js for Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
-
-    <!-- Choose other themes from https://prismjs.com/download.html -->
-    <!-- Let user choose? -->
-
-    <!-- Optional: Google Fonts (Example: Roboto & Open Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap"
@@ -26,15 +18,54 @@
 
 <body>
 
-    <header>
-        <nav>
+    <header class="header">
+        <!-- Site Title/Logo (Optional, could be text or an image) -->
+        <a href="#hero" class="site-title">Robert Williamson</a>
+
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"
+            aria-controls="primary-navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu icon-menu">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-x icon-close" style="display: none;">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <nav id="primary-navigation">
             <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <!-- GitHub link can be part of the nav now for simplicity on mobile -->
+                <li class="nav-github-link"><a href="https://github.com/Robby-cell/Robby-cell.github.io" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-github nav-icon">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        GitHub
+                    </a></li>
             </ul>
         </nav>
+        <!-- This div is no longer needed if GitHub is in nav -->
+        <!-- <div>
+            <a href="https://github.com/Robby-cell/Robby-cell.github.io" class="link-to-github" target="_blank"
+                rel="noopener noreferrer">
+                <svg ...></svg>
+            </a>
+        </div> -->
     </header>
 
     <main>
@@ -56,7 +87,6 @@
             <p>
                 Key skills: Problem-solving, Teamwork, C++, Java, Python, HTML, CSS, JavaScript, React, Node.js,
             </p>
-            <!-- More paragraphs in the future -->
         </section>
 
         <section id="portfolio">
@@ -96,32 +126,12 @@
                 <a href="https://www.linkedin.com/in/robert-williamson-51bb1322b/" target="_blank"
                     rel="noopener noreferrer">LinkedIn Profile</a>
             </div>
-
-            <!-- Add GitHub or other relevant links here following the same pattern -->
-            <!-- Example GitHub:
-            <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-github contact-icon">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <a href="https://github.com/robby-cell" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-            </div>
-            -->
         </section>
     </main>
 
     <footer>
         <p>© <span id="current-year">2025</span> Robert Williamson. All rights reserved.</p>
     </footer>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script> -->
 
     <script src="js/script.js"></script>
     <script src="js/prism.js"></script>

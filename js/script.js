@@ -7,6 +7,40 @@ const PROJECT_IMAGE_CLASSES = ["project-image"];
 const PROJECT_CODE_SNIPPET_CONTAINER_CLASSES = ["project-code-snippet-container"]; // New class for the snippet's div
 // PROJECT_CODE_SNIPPET_CLASSES is used for the <code> element itself
 
+const setupMenuToggle = () => {
+    const menuToggleButton = document.querySelector('.menu-toggle');
+    const primaryNav = document.getElementById('primary-navigation');
+    const iconMenu = menuToggleButton?.querySelector('.icon-menu');
+    const iconClose = menuToggleButton?.querySelector('.icon-close');
+
+    if (menuToggleButton && primaryNav && iconMenu && iconClose) {
+        menuToggleButton.addEventListener('click', () => {
+            const isNavOpen = primaryNav.classList.toggle('nav-open');
+            menuToggleButton.setAttribute('aria-expanded', isNavOpen);
+
+            if (isNavOpen) {
+                iconMenu.style.display = 'none';
+                iconClose.style.display = 'block';
+            } else {
+                iconMenu.style.display = 'block';
+                iconClose.style.display = 'none';
+            }
+        });
+
+        // Optional: Close menu when a nav link is clicked
+        primaryNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (primaryNav.classList.contains('nav-open')) {
+                    primaryNav.classList.remove('nav-open');
+                    menuToggleButton.setAttribute('aria-expanded', 'false');
+                    iconMenu.style.display = 'block';
+                    iconClose.style.display = 'none';
+                }
+            });
+        });
+    }
+};
+
 /**
  * Creates language filter tabs and sets up filtering functionality.
  * @param {object[]} projects - Array of project objects.
@@ -208,6 +242,7 @@ function updateFooterYear() {
 
 // Run when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    setupMenuToggle();
     fillPortfolio(projectsJsonUrl);
     updateFooterYear();
 });

@@ -10,10 +10,15 @@
     --light-gray: #f0f0f0;
     --font-primary: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-secondary: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    --header-height: 70px; /* Define header height for use later */
 }
 
 html {
     scroll-behavior: smooth;
+    box-sizing: border-box; /* Makes padding and border part of element's total width/height */
+}
+*, *::before, *::after {
+    box-sizing: inherit; /* Inherit box-sizing for all elements */
 }
 
 body {
@@ -23,47 +28,84 @@ body {
     line-height: 1.7;
     color: var(--text-color);
     background-color: var(--background-color);
+    padding-top: var(--header-height); /* Prevent content from hiding behind sticky header */
 }
 
-header {
+header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem; /* Horizontal padding */
+    height: var(--header-height);
     background-color: var(--card-background);
-    padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: sticky; /* Makes nav stick to top */
+    position: fixed; /* Changed to fixed for better UX */
     top: 0;
-    z-index: 1000; /* Ensures nav is above other content */
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
-nav ul {
+.site-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    text-decoration: none;
+    font-family: var(--font-primary);
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1010; /* Above nav */
+}
+.menu-toggle svg {
+    stroke: var(--heading-color);
+}
+
+
+/* Desktop Navigation */
+nav#primary-navigation ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: center;
+    display: flex; /* Horizontal layout for desktop */
+    align-items: center;
 }
 
-nav li {
-    display: inline;
-    margin: 0 1.5rem;
+nav#primary-navigation li {
+    margin-left: 1.5rem; /* Spacing between desktop nav items */
 }
 
-nav a {
+nav#primary-navigation a {
     text-decoration: none;
     color: var(--primary-color);
     font-weight: bold;
     font-family: var(--font-primary);
     transition: color 0.3s ease;
+    padding: 0.5rem 0.25rem;
+    display: flex; /* For aligning icon and text in GitHub link */
+    align-items: center;
 }
 
-nav a:hover,
-nav a:focus {
+nav#primary-navigation a:hover,
+nav#primary-navigation a:focus {
     color: var(--primary-hover-color);
     text-decoration: underline;
 }
 
+.nav-icon {
+    margin-right: 0.3rem; /* Space between icon and text in nav link */
+}
+
+
 main {
     padding: 2rem;
-    max-width: 1024px; /* Slightly wider for modern screens */
-    margin: 2rem auto; /* Add top/bottom margin */
+    max-width: 1024px;
+    margin: 0 auto; /* Remove top margin as body padding handles it */
 }
 
 section {
@@ -139,12 +181,13 @@ h3 { font-size: 1.5rem; }
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .language-tab {
     padding: 0.6rem 1.2rem;
     border: 1px solid var(--border-color);
-    border-radius: 20px; /* Pill shape */
+    border-radius: 20px;
     cursor: pointer;
     background: var(--background-color);
     color: var(--text-color);
@@ -166,19 +209,21 @@ h3 { font-size: 1.5rem; }
 
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    overflow: hidden; /* Helps contain children if they try to break out */
 }
 
 .project-container {
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     border-radius: 8px;
-    background-color: #fff; /* Keep distinct if section bg is very light */
+    background-color: #fff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
-    flex-direction: column; /* So content stacks nicely */
+    flex-direction: column;
+    overflow: hidden; /* Crucial: Prevents content from breaking out of the card */
 }
 
 .project-container:hover {
@@ -192,6 +237,7 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
     text-decoration: none;
     font-family: var(--font-primary);
+    word-break: break-word; /* In case of very long project names */
 }
 
 .project-name:hover {
@@ -202,25 +248,32 @@ h3 { font-size: 1.5rem; }
 .project-container p {
     font-size: 0.95rem;
     margin-bottom: 1rem;
-    flex-grow: 1; /* Makes descriptions take available space, aligning footers */
+    flex-grow: 1;
+    word-break: break-word; /* For long words in description */
 }
 
-.project-code-snippet-container p { /* For "Sample code:" text */
+.project-code-snippet-container { /* Container for the "Sample code:" text and the <pre> block */
+    flex-grow: 0; /* Don't let this grow */
+    overflow: hidden; /* Helps contain the pre block */
+}
+
+.project-code-snippet-container p { /* "Sample code:" text */
     font-size: 0.9rem;
     font-style: italic;
     margin-bottom: 0.5rem;
     color: var(--secondary-color);
+    flex-grow: 0;
 }
 
-/* Prism.js <pre> styling */
 pre[class*="language-"] {
     padding: 1em;
     margin: 0.5em 0 1em 0;
     border-radius: 6px;
-    overflow: auto;
-    font-size: 0.85em; /* Make code text slightly smaller */
-    /* Theme typically handles background, but you can set a default */
-    /* background: #272822; /* Example dark background if theme doesn't load */
+    overflow-x: auto !important; /* Ensure horizontal scroll for code */
+    font-size: 0.85em;
+    max-width: 100%; /* Ensure pre doesn't exceed its container */
+    word-break: normal; /* Override parent break-word for code */
+    white-space: pre; /* Ensure pre formatting is respected */
 }
 
 .project-images-container {
@@ -231,12 +284,12 @@ pre[class*="language-"] {
 }
 
 .project-image {
-    max-width: 100%; /* Make images responsive within their container */
+    max-width: 100%;
     height: auto;
     border-radius: 4px;
     border: 1px solid #eee;
-    object-fit: cover; /* Ensures images cover the area without distortion */
-    max-height: 150px; /* Optional: limit image height */
+    object-fit: cover;
+    max-height: 150px;
 }
 
 .contact-item {
@@ -263,11 +316,11 @@ pre[class*="language-"] {
 }
 
 footer {
-    background-color: var(--heading-color); /* Darker footer */
+    background-color: var(--heading-color);
     color: var(--light-gray);
     padding: 2rem 0;
     text-align: center;
-    margin-top: 2rem; /* Give some space above footer */
+    margin-top: 2rem;
 }
 
 footer p {
@@ -275,9 +328,8 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Utility classes */
 .hidden {
-    display: none !important; /* Use important to ensure it overrides other display properties */
+    display: none !important;
 }
 
 .loading-message {
@@ -288,33 +340,102 @@ footer p {
 }
 
 .error-message {
-    color: #dc3545; /* Bootstrap danger color */
+    color: #dc3545;
     font-weight: bold;
     text-align: center;
     padding: 2rem;
 }
 
-/* Responsive adjustments */
+
+/* Responsive adjustments: Mobile First Approach for Navigation */
 @media (max-width: 768px) {
-    nav li {
-        margin: 0 0.75rem;
+    .site-title {
+        font-size: 1.3rem; /* Slightly smaller title on mobile */
     }
+
+    .menu-toggle {
+        display: block; /* Show hamburger button */
+    }
+
+    nav#primary-navigation {
+        display: none; /* Hide nav by default on mobile */
+        position: absolute;
+        top: var(--header-height); /* Start below the header */
+        left: 0;
+        right: 0;
+        background-color: var(--card-background);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding-bottom: 1rem; /* Space at the bottom of the menu */
+    }
+
+    nav#primary-navigation.nav-open {
+        display: block; /* Show nav when menu is open */
+    }
+
+    nav#primary-navigation ul {
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: stretch; /* Make items take full width */
+        width: 100%;
+    }
+
+    nav#primary-navigation li {
+        margin: 0; /* Remove horizontal margins */
+        border-bottom: 1px solid var(--border-color); /* Separator lines */
+    }
+    nav#primary-navigation li:last-child {
+        border-bottom: none;
+    }
+
+    nav#primary-navigation a {
+        display: block; /* Make link take full width of li */
+        padding: 1rem 1.5rem; /* Larger touch targets */
+        text-align: left; /* Align text to left */
+    }
+    .nav-github-link .nav-icon { /* Ensure icon aligns well */
+        vertical-align: middle;
+    }
+
+
     main {
-        padding: 1rem;
+        padding: 1.5rem 1rem;
+        /* margin-top is handled by body padding-top */
+        margin-bottom: 1rem;
     }
+
     section {
         padding: 1.5rem;
+        margin-bottom: 2rem;
     }
+
+    #hero {
+        padding: 3rem 1rem;
+    }
+
     #hero h1 {
         font-size: 2.2rem;
     }
+
     #hero p {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
+
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.4rem; }
+
 
     .projects-container {
-        grid-template-columns: 1fr; /* Stack projects on smaller screens */
+        grid-template-columns: 1fr; /* Single column */
+        gap: 1.5rem;
+    }
+    /* No change needed for project-container overflow with the new rules */
+
+    .language-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    #language-tabs {
+        justify-content: flex-start;
     }
 }
