@@ -4,12 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Personal portfolio of Robert Williamson, a Computer Science student at Queen's University Belfast, showcasing projects and skills.">
     <title>Robert Williamson</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Icon for the page -->
     <link rel="icon" href="data/images/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <!-- Prism.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+
+    <!-- Choose other themes from https://prismjs.com/download.html -->
+    <!-- Let user choose? -->
+
+    <!-- Optional: Google Fonts (Example: Roboto & Open Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +29,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="#hero">Home</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -27,14 +39,24 @@
 
     <main>
         <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Currently a second year student in Computer Science at Queen's University Belfast.</p>
+            <h1>Robert Williamson</h1>
+            <p>Second year Computer Science student at Queen's University Belfast. Passionate about software development
+                and problem-solving.</p>
             <a href="#portfolio" class="button">View My Work</a>
         </section>
 
         <section id="about">
             <h2>About Me</h2>
-            <p>Computer Science student.</p>
+            <p>
+                I am a dedicated and enthusiastic Computer Science student at Queen's University Belfast,
+                currently in my second year. I have a strong interest in web development, and high performance apps.
+                I am always eager to learn new technologies and frameworks.
+                My goal is to become a well established professional in the field of Software Engineering.
+            </p>
+            <p>
+                Key skills: Problem-solving, Teamwork, C++, Java, Python, HTML, CSS, JavaScript, React, Node.js,
+            </p>
+            <!-- More paragraphs in the future -->
         </section>
 
         <section id="portfolio">
@@ -50,40 +72,59 @@
 
         <section id="contact">
             <h2>Contact Me</h2>
-            <p>Feel free to reach out!</p>
+            <p>Feel free to reach out! I'm always open to discussing new projects, creative ideas, or opportunities to
+                be part of something great.</p>
 
-            <div>
-                <!-- Email Icon (Feather Icon SVG Code - Example) -->
+            <div class="contact-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-mail">
+                    class="feather feather-mail contact-icon">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
                 <a href="mailto:robert11122002@gmail.com">robert11122002@gmail.com</a>
             </div>
 
-            <div>
-                <!-- LinkedIn Icon (Feather Icon SVG Code - Example) -->
+            <div class="contact-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-linkedin">
+                    class="feather feather-linkedin contact-icon">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
-                <a href="https://www.linkedin.com/in/robert-williamson-51bb1322b/">LinkedIn Profile</a>
+                <a href="https://www.linkedin.com/in/robert-williamson-51bb1322b/" target="_blank"
+                    rel="noopener noreferrer">LinkedIn Profile</a>
             </div>
 
+            <!-- Add GitHub or other relevant links here following the same pattern -->
+            <!-- Example GitHub:
+            <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-github contact-icon">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <a href="https://github.com/robby-cell" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+            </div>
+            -->
         </section>
     </main>
 
     <footer>
-        <p>© 2025 Robert Williamson. All rights reserved.</p>
+        <p>© <span id="current-year">2025</span> Robert Williamson. All rights reserved.</p>
     </footer>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script> -->
+
     <script src="js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="js/prism.js"></script>
 </body>
 
 </html>
