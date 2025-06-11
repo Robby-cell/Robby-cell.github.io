@@ -1,5 +1,16 @@
 [
     {
+        "name": "Remindify",
+        "url": "https://github.com/Robby-cell/Remindify",
+        "description": "Calendar app, but it functions like a social media app (like Whatsapp). Users can send messages to the chat, and the messages will be sent, or, if information is given, the message will be used to add an event to the calendar. The calendar can be exported as ICS, and imported into your everyday calendar app that you use.",
+        "language": "javascript",
+        "imageSources": [
+            "https://github.com/Robby-cell/Remindify/blob/main/images/HomeScreenEmptyChat.png",
+            "https://github.com/Robby-cell/Remindify/blob/main/images/AddingAllDayEvent.png",
+            "https://github.com/Robby-cell/Remindify/blob/main/images/EventAdded.png"
+        ]
+    },
+    {
         "name": "Git App",
         "url": "https://github.com/Robby-cell/git-app",
         "description": "A simple git client that allows you to manage git repositories through a graphical interface.",
