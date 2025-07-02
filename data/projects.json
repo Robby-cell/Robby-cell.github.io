@@ -19,10 +19,10 @@
             "    using variant::HoldsAlternative, variant::Visit;",
             "\n",
             "    auto str = Visit([](const auto& v) { return std::to_string(v); }, v);",
-            "    std::cout << \"Variant to string = \" << str << '\n';",
+            "    std::cout << \"Variant to string = \" << str << '\\n';",
             "",
             "    auto holds_int = HoldsAlternative<int>(v);",
-            "    std::cout << \"Holds int: \" << std::boolalpha << holds_int << '\n';",
+            "    std::cout << \"Holds int: \" << std::boolalpha << holds_int << '\\n';",
             "}"
         ],
         "language": "cpp",
