@@ -1,5 +1,34 @@
 [
     {
+        "name": "Space",
+        "url": "https://github.com/Robby-cell/variant",
+        "description": "A header only implementation of std::variant that works for C++11.",
+        "codeSnippet": [
+            "#include <ios>",
+            "#include <iostream>",
+            "#include <string>",
+            "\n",
+            "#include \"variant/variant.hpp\"",
+            "\n",
+            "int main() {",
+            "    using variant::Variant;",
+            "\n",
+            "    Variant<int, double, char> v;",
+            "    v.Emplace<int>(42);",
+            "\n",
+            "    using variant::HoldsAlternative, variant::Visit;",
+            "\n",
+            "    auto str = Visit([](const auto& v) { return std::to_string(v); }, v);",
+            "    std::cout << \"Variant to string = \" << str << '\n';",
+            "",
+            "    auto holds_int = HoldsAlternative<int>(v);",
+            "    std::cout << \"Holds int: \" << std::boolalpha << holds_int << '\n';",
+            "}"
+        ],
+        "language": "cpp",
+        "imageSources": []
+    },
+    {
         "name": "Remindify",
         "url": "https://github.com/Robby-cell/Remindify",
         "description": "Calendar app, but it functions like a social media app (like Whatsapp). Users can send messages to the chat, and the messages will be sent, or, if information is given, the message will be used to add an event to the calendar. The calendar can be exported as ICS, and imported into your everyday calendar app that you use.",
