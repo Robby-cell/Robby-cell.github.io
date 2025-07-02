@@ -2,7 +2,7 @@
     {
         "name": "Variant",
         "url": "https://github.com/Robby-cell/variant",
-        "description": "A header only implementation of std::variant that works for C++11.",
+        "description": "A header only implementation of std::variant that works for C++14.",
         "codeSnippet": [
             "#include <ios>",
             "#include <iostream>",
