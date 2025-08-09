@@ -136,11 +136,90 @@
     <button id="theme-toggle">Toggle Theme</button>
     <button id="back-to-top">Back to Top</button>
 
-    <script src="js/router.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/back-to-top.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/prism.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/prism.js" defer></script>
+    <script defer>
+        const routes = {
+            '#home': 'hero',
+            '#portfolio': 'portfolio',
+            '#about': 'about',
+            '#contact': 'contact'
+        };
+
+        const setupRouter = () => {
+            const handleRouteChange = () => {
+                const hash = window.location.hash || '#home';
+                const sectionId = routes[hash];
+
+                if (sectionId) {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                        updateActiveNavLink(hash);
+                    }
+                }
+            };
+
+            const updateActiveNavLink = (activeHash) => {
+                document.querySelectorAll('#primary-navigation a').forEach(link => {
+                    if (link.getAttribute('href') === activeHash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            };
+
+            window.addEventListener('hashchange', handleRouteChange);
+            window.addEventListener('load', handleRouteChange);
+
+            // Initial check
+            handleRouteChange();
+        };
+
+        document.addEventListener('DOMContentLoaded', setupRouter);
+    </script>
+    <script defer>const setupThemeSwitcher = () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const applyTheme = (theme) => {
+                body.classList.remove('light-theme', 'dark-theme');
+                body.classList.add(theme);
+                localStorage.setItem('theme', theme);
+            };
+
+            themeToggleButton.onclick = () => {
+                const currentTheme = localStorage.getItem('theme') || 'light-theme';
+                const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
+                applyTheme(newTheme);
+            };
+
+            // Apply saved theme on load
+            const savedTheme = localStorage.getItem('theme') || 'light-theme';
+            applyTheme(savedTheme);
+        };
+
+        document.addEventListener('DOMContentLoaded', setupThemeSwitcher);
+    </script>
+    <script defer>const setupBackToTopButton = () => {
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.onclick = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        };
+
+        document.addEventListener('DOMContentLoaded', setupBackToTopButton);
+    </script>
 </body>
 
 </html>
