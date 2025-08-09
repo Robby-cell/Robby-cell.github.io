@@ -1,4 +1,10 @@
-:root {
+/* General Styles */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Theme */
+.light-theme {
     --primary-color: #007bff;
     --primary-hover-color: #0056b3;
     --secondary-color: #6c757d;
@@ -8,17 +14,74 @@
     --card-background: #ffffff;
     --border-color: #dee2e6;
     --light-gray: #f0f0f0;
-    --font-primary: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-secondary: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    --header-height: 70px; /* Define header height for use later */
+}
+
+/* Dark Theme */
+.dark-theme {
+    --primary-color: #4dabf7;
+    --primary-hover-color: #1e88e5;
+    --secondary-color: #adb5bd;
+    --text-color: #ced4da;
+    --heading-color: #ffffff;
+    --background-color: #121212;
+    --card-background: #1e1e1e;
+    --border-color: #495057;
+    --light-gray: #343a40;
+}
+
+#theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: var(--primary-hover-color);
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1001;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    display: none;
+    transition: background-color 0.3s;
+}
+
+#back-to-top:hover {
+    background-color: var(--primary-hover-color);
+}
+
+nav#primary-navigation a.active {
+    color: var(--primary-hover-color);
+    text-decoration: underline;
 }
 
 html {
     scroll-behavior: smooth;
-    box-sizing: border-box; /* Makes padding and border part of element's total width/height */
+    box-sizing: border-box;
+    /* Makes padding and border part of element's total width/height */
 }
-*, *::before, *::after {
-    box-sizing: inherit; /* Inherit box-sizing for all elements */
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    /* Inherit box-sizing for all elements */
 }
 
 body {
@@ -28,18 +91,21 @@ body {
     line-height: 1.7;
     color: var(--text-color);
     background-color: var(--background-color);
-    padding-top: var(--header-height); /* Prevent content from hiding behind sticky header */
+    padding-top: var(--header-height);
+    /* Prevent content from hiding behind sticky header */
 }
 
 header.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.5rem; /* Horizontal padding */
+    padding: 0 1.5rem;
+    /* Horizontal padding */
     height: var(--header-height);
     background-color: var(--card-background);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: fixed; /* Changed to fixed for better UX */
+    position: fixed;
+    /* Changed to fixed for better UX */
     top: 0;
     left: 0;
     right: 0;
@@ -55,13 +121,16 @@ header.header {
 }
 
 .menu-toggle {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
+    /* Hidden by default, shown on mobile */
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1010; /* Above nav */
+    z-index: 1010;
+    /* Above nav */
 }
+
 .menu-toggle svg {
     stroke: var(--heading-color);
 }
@@ -72,12 +141,14 @@ nav#primary-navigation ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Horizontal layout for desktop */
+    display: flex;
+    /* Horizontal layout for desktop */
     align-items: center;
 }
 
 nav#primary-navigation li {
-    margin-left: 1.5rem; /* Spacing between desktop nav items */
+    margin-left: 1.5rem;
+    /* Spacing between desktop nav items */
 }
 
 nav#primary-navigation a {
@@ -87,7 +158,8 @@ nav#primary-navigation a {
     font-family: var(--font-primary);
     transition: color 0.3s ease;
     padding: 0.5rem 0.25rem;
-    display: flex; /* For aligning icon and text in GitHub link */
+    display: flex;
+    /* For aligning icon and text in GitHub link */
     align-items: center;
 }
 
@@ -98,14 +170,16 @@ nav#primary-navigation a:focus {
 }
 
 .nav-icon {
-    margin-right: 0.3rem; /* Space between icon and text in nav link */
+    margin-right: 0.3rem;
+    /* Space between icon and text in nav link */
 }
 
 
 main {
     padding: 2rem;
     max-width: 1024px;
-    margin: 0 auto; /* Remove top margin as body padding handles it */
+    margin: 0 auto;
+    /* Remove top margin as body padding handles it */
 }
 
 section {
@@ -134,16 +208,26 @@ section {
     margin-bottom: 2rem;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     margin-top: 0;
     margin-bottom: 1.5rem;
     color: var(--heading-color);
     font-family: var(--font-primary);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
 
 
 .button {
@@ -170,6 +254,7 @@ h3 { font-size: 1.5rem; }
     background-color: white;
     color: var(--primary-color);
 }
+
 #hero .button:hover,
 #hero .button:focus {
     background-color: #e9ecef;
@@ -211,19 +296,21 @@ h3 { font-size: 1.5rem; }
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    overflow: hidden; /* Helps contain children if they try to break out */
+    overflow: hidden;
+    /* Helps contain children if they try to break out */
 }
 
 .project-container {
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: var(--card-background);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Crucial: Prevents content from breaking out of the card */
+    overflow: hidden;
+    /* Crucial: Prevents content from breaking out of the card */
 }
 
 .project-container:hover {
@@ -237,7 +324,8 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
     text-decoration: none;
     font-family: var(--font-primary);
-    word-break: break-word; /* In case of very long project names */
+    word-break: break-word;
+    /* In case of very long project names */
 }
 
 .project-name:hover {
@@ -249,15 +337,21 @@ h3 { font-size: 1.5rem; }
     font-size: 0.95rem;
     margin-bottom: 1rem;
     flex-grow: 1;
-    word-break: break-word; /* For long words in description */
+    word-break: break-word;
+    /* For long words in description */
+    color: var(--text-color);
 }
 
-.project-code-snippet-container { /* Container for the "Sample code:" text and the <pre> block */
-    flex-grow: 0; /* Don't let this grow */
-    overflow: hidden; /* Helps contain the pre block */
+.project-code-snippet-container {
+    /* Container for the "Sample code:" text and the <pre> block */
+    flex-grow: 0;
+    /* Don't let this grow */
+    overflow: hidden;
+    /* Helps contain the pre block */
 }
 
-.project-code-snippet-container p { /* "Sample code:" text */
+.project-code-snippet-container p {
+    /* "Sample code:" text */
     font-size: 0.9rem;
     font-style: italic;
     margin-bottom: 0.5rem;
@@ -269,11 +363,15 @@ pre[class*="language-"] {
     padding: 1em;
     margin: 0.5em 0 1em 0;
     border-radius: 6px;
-    overflow-x: auto !important; /* Ensure horizontal scroll for code */
+    overflow-x: auto !important;
+    /* Ensure horizontal scroll for code */
     font-size: 0.85em;
-    max-width: 100%; /* Ensure pre doesn't exceed its container */
-    word-break: normal; /* Override parent break-word for code */
-    white-space: pre; /* Ensure pre formatting is respected */
+    max-width: 100%;
+    /* Ensure pre doesn't exceed its container */
+    word-break: normal;
+    /* Override parent break-word for code */
+    white-space: pre;
+    /* Ensure pre formatting is respected */
 }
 
 .project-images-container {
@@ -287,7 +385,7 @@ pre[class*="language-"] {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     object-fit: cover;
     max-height: 150px;
 }
@@ -316,11 +414,12 @@ pre[class*="language-"] {
 }
 
 footer {
-    background-color: var(--heading-color);
-    color: var(--light-gray);
+    background-color: var(--card-background);
+    color: var(--text-color);
     padding: 2rem 0;
     text-align: center;
     margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
 }
 
 footer p {
@@ -350,48 +449,64 @@ footer p {
 /* Responsive adjustments: Mobile First Approach for Navigation */
 @media (max-width: 768px) {
     .site-title {
-        font-size: 1.3rem; /* Slightly smaller title on mobile */
+        font-size: 1.3rem;
+        /* Slightly smaller title on mobile */
     }
 
     .menu-toggle {
-        display: block; /* Show hamburger button */
+        display: block;
+        /* Show hamburger button */
     }
 
     nav#primary-navigation {
-        display: none; /* Hide nav by default on mobile */
+        display: none;
+        /* Hide nav by default on mobile */
         position: absolute;
-        top: var(--header-height); /* Start below the header */
+        top: var(--header-height);
+        /* Start below the header */
         left: 0;
         right: 0;
         background-color: var(--card-background);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding-bottom: 1rem; /* Space at the bottom of the menu */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding-bottom: 1rem;
+        /* Space at the bottom of the menu */
     }
 
     nav#primary-navigation.nav-open {
-        display: block; /* Show nav when menu is open */
+        display: block;
+        /* Show nav when menu is open */
     }
 
     nav#primary-navigation ul {
-        flex-direction: column; /* Stack nav items vertically */
-        align-items: stretch; /* Make items take full width */
+        flex-direction: column;
+        /* Stack nav items vertically */
+        align-items: stretch;
+        /* Make items take full width */
         width: 100%;
     }
 
     nav#primary-navigation li {
-        margin: 0; /* Remove horizontal margins */
-        border-bottom: 1px solid var(--border-color); /* Separator lines */
+        margin: 0;
+        /* Remove horizontal margins */
+        border-bottom: 1px solid var(--border-color);
+        /* Separator lines */
     }
+
     nav#primary-navigation li:last-child {
         border-bottom: none;
     }
 
     nav#primary-navigation a {
-        display: block; /* Make link take full width of li */
-        padding: 1rem 1.5rem; /* Larger touch targets */
-        text-align: left; /* Align text to left */
+        display: block;
+        /* Make link take full width of li */
+        padding: 1rem 1.5rem;
+        /* Larger touch targets */
+        text-align: left;
+        /* Align text to left */
     }
-    .nav-github-link .nav-icon { /* Ensure icon aligns well */
+
+    .nav-github-link .nav-icon {
+        /* Ensure icon aligns well */
         vertical-align: middle;
     }
 
@@ -419,15 +534,25 @@ footer p {
         font-size: 1.05rem;
     }
 
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.4rem; }
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
 
 
     .projects-container {
-        grid-template-columns: 1fr; /* Single column */
+        grid-template-columns: 1fr;
+        /* Single column */
         gap: 1.5rem;
     }
+
     /* No change needed for project-container overflow with the new rules */
 
     .language-tab {
