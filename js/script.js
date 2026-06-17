@@ -25,7 +25,7 @@ const createProjectElement = (project) => {
     pElement.appendChild(nameElement);
 
     const descriptionElement = document.createElement("p");
-    descriptionElement.innerText = project.description || "No description available.";
+    descriptionElement.innerHTML = project.description || "No description available.";
     pElement.appendChild(descriptionElement);
 
     if (project.codeSnippet && project.codeSnippet.length > 0) {

@@ -2,7 +2,7 @@
     {
         "name": "Hyperemu",
         "url": "https://github.com/Robby-cell/hyperemu-gui",
-        "description": "A functional emulator for the ARMv7 (expanded to include x86 and RISC-V) architecture written in Rust. Capable of decoding and executing ARM instructions, managing memory registers, and simulating system behavior for educational and testing purposes. Live demo available at <a>https://robby-cell.github.io/hyperemu-gui/</a>.",
+        "description": "A functional emulator for the ARMv7 (expanded to include x86 and RISC-V) architecture written in Rust. Capable of decoding and executing ARM instructions, managing memory registers, and simulating system behavior for educational and testing purposes. Live demo available on <a href='https://robby-cell.github.io/hyperemu-gui/' target='_blank'>Github Pages</a>.",
         "language": "rust",
         "imageSources": ["data/images/hyperemu-example.png"]
     },
