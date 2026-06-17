@@ -1,4 +1,5 @@
-const projectsJsonUrl = "https://robby-cell.github.io/data/projects.json";
+// const projectsJsonUrl = "https://robby-cell.github.io/data/projects.json";
+const projectsJsonUrl = "./data/projects.json";
 
 const PROJECT_CLASSES = ["project-container"];
 const PROJECT_NAME_CLASSES = ["project-name"];

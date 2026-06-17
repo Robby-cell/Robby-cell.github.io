@@ -564,3 +564,86 @@ footer p {
         justify-content: flex-start;
     }
 }
+
+/* Skills Tags */
+.skills-container {
+    margin-top: 2rem;
+}
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skill-tag {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+.skill-tag:hover {
+    transform: translateY(-2px);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.secondary-button {
+    background-color: transparent;
+    border: 2px solid currentColor;
+}
+
+/* Education Section */
+.education-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+.education-inst {
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #666;
+}
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    text-align: left;
+}
+.module-year h4 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+.module-year ul {
+    list-style-type: none;
+    padding: 0;
+}
+.module-year li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+.module-year li::before {
+    content: "•";
+    color: #007bff;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+.project-note {
+    margin-top: 1.5rem;
+    padding: 10px;
+    background-color: rgba(0, 123, 255, 0.1);
+    border-left: 3px solid #007bff;
+    font-size: 0.9rem;
+}

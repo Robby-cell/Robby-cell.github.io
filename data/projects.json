@@ -1,10 +1,16 @@
 [
     {
+        "name": "Hyperemu",
+        "url": "https://github.com/Robby-cell/hyperemu-gui",
+        "description": "A functional emulator for the ARMv7 (expanded to include x86 and RISC-V) architecture written in Rust. Capable of decoding and executing ARM instructions, managing memory registers, and simulating system behavior for educational and testing purposes. Live demo available at <a>https://robby-cell.github.io/hyperemu-gui/</a>.",
+        "language": "rust",
+        "imageSources": ["data/images/hyperemu-example.png"]
+    },
+    {
         "name": "Variant",
         "url": "https://github.com/Robby-cell/variant",
         "description": "A header only implementation of std::variant that works for C++14.",
         "codeSnippet": [
-            "#include <ios>",
             "#include <iostream>",
             "#include <string>",
             "\n",
@@ -12,17 +18,10 @@
             "\n",
             "int main() {",
             "    using variant::Variant;",
-            "\n",
             "    Variant<int, double, char> v;",
             "    v.Emplace<int>(42);",
-            "\n",
-            "    using variant::HoldsAlternative, variant::Visit;",
-            "\n",
             "    auto str = Visit([](const auto& v) { return std::to_string(v); }, v);",
             "    std::cout << \"Variant to string = \" << str << '\\n';",
-            "",
-            "    auto holds_int = HoldsAlternative<int>(v);",
-            "    std::cout << \"Holds int: \" << std::boolalpha << holds_int << '\\n';",
             "}"
         ],
         "language": "cpp",
@@ -31,7 +30,7 @@
     {
         "name": "Remindify",
         "url": "https://github.com/Robby-cell/Remindify",
-        "description": "Calendar app, but it functions like a social media app (like Whatsapp). Users can send messages to the chat, and the messages will be sent, or, if information is given, the message will be used to add an event to the calendar. The calendar can be exported as ICS, and imported into your everyday calendar app that you use.",
+        "description": "Calendar app that functions like a social media app. Users send messages to a chat, and if event information is given, it adds it to a calendar. Can be exported as ICS.",
         "language": "javascript",
         "imageSources": [
             "https://github.com/Robby-cell/Remindify/raw/main/images/HomeScreenEmptyChat.png",
@@ -44,14 +43,12 @@
         "url": "https://github.com/Robby-cell/git-app",
         "description": "A simple git client that allows you to manage git repositories through a graphical interface.",
         "language": "python",
-        "imageSources": [
-            "https://github.com/Robby-cell/git-app/raw/main/assets/image.png"
-        ]
+        "imageSources": ["https://github.com/Robby-cell/git-app/raw/main/assets/image.png"]
     },
     {
         "name": "Space",
         "url": "https://github.com/Robby-cell/Space",
-        "description": "A basic implementation of the string container, like std::string. Has features like small string optimization (SSO), custom allocator support and iterators. Also provides some compatibility with standard library concepts, like ostream.",
+        "description": "A basic implementation of a string container (like std::string). Features small string optimization (SSO), custom allocator support, and iterators.",
         "codeSnippet": [
             "#include <iostream>",
             "#include \"space/string.hpp\"",
@@ -66,21 +63,16 @@
     {
         "name": "Assert",
         "url": "https://github.com/Robby-cell/Assert",
-        "description": "Readable and powerful C++ assertions. Simple C++ framework that allows testing. Includes detailed error messages, expressive assertions and structured test organization.",
+        "description": "Readable and powerful C++ assertions. Simple framework allowing testing with detailed error messages, expressive assertions, and structured test organization.",
         "codeSnippet": [
             "#include \"Assert/Assert.hpp\"",
             "TEST_CASE(\"Integer Addition Test\") {",
-            "\tint a = 5;",
-            "\tint b = 10;",
-            "\tASSERT(a + b == 15); // Assertion that should pass",
-            "\tASSERT(a + b != 20); // Another assertion that should pass",
-            "\tASSERT(a * b == 50); // Assertion that should pass",
-            "\tASSERT(a - b > 0);  // Assertion that should FAIL",
+            "\tint a = 5; int b = 10;",
+            "\tASSERT(a + b == 15); // Pass",
+            "\tASSERT(a - b > 0);  // Fail",
             "}"
         ],
         "language": "cpp",
-        "imageSources": [
-            "data/images/assert-example.png"
-        ]
+        "imageSources": ["data/images/assert-example.png"]
     }
 ]
