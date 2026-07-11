@@ -24,7 +24,7 @@
             "#include \"variant/variant.hpp\"",
             "\n",
             "int main() {",
-            "    using variant::Variant;",
+            "    using namespace variant;",
             "    Variant<int, double, char> v;",
             "    v.Emplace<int>(42);",
             "    auto str = Visit([](const auto& v) { return std::to_string(v); }, v);",
