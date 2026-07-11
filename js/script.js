@@ -51,7 +51,7 @@
         { name: "Data Structures & Algorithms" },
         { name: "Theory of Computation" },
         { name: "Intro to Artificial Intelligence" },
-        { name: "Professional & Transferrable Skills" },
+        { name: "Professional & Transferable Skills" },
       ],
     },
     {
@@ -68,13 +68,17 @@
   ];
 
   /* ---------- Helpers ---------- */
+  /**
+   * @arg {any} tag
+   * @arg {any} attrs
+   * @arg {any} children
+   */
   function el(tag, attrs, children) {
     var node = document.createElement(tag);
     if (attrs) {
       Object.keys(attrs).forEach(function (k) {
         if (k === "class") node.className = attrs[k];
         else if (k === "text") node.textContent = attrs[k];
-        else if (k === "html") node.innerHTML = attrs[k];
         else if (k.indexOf("on") === 0 && typeof attrs[k] === "function")
           node.addEventListener(k.slice(2), attrs[k]);
         else if (attrs[k] != null) node.setAttribute(k, attrs[k]);
@@ -96,7 +100,7 @@
     var wrap = document.getElementById("skill-chips");
     if (!wrap) return;
     SKILLS.forEach(function (s) {
-      wrap.appendChild(el("span", { class: "chip", text: s }));
+      wrap.appendChild(el("span", { class: "chip", text: s }, undefined));
     });
   }
 
@@ -107,30 +111,69 @@
     var note = document.getElementById("year3-note");
     if (!tabs || !grid) return;
 
-    var active = EDUCATION[0]; // default: Year 1
+    var activeIndex = 0;
+
+    /**
+     * @param {number} index
+     * @param {boolean} moveFocus
+     */
+    function selectYear(index, moveFocus) {
+      activeIndex = index;
+      paintTabs();
+      paintModules();
+      if (moveFocus) {
+        var activeTab = tabs.querySelector('[aria-selected="true"]');
+        if (activeTab) activeTab.focus();
+      }
+    }
 
     function paintTabs() {
       tabs.innerHTML = "";
-      EDUCATION.forEach(function (y) {
-        var t = el("button", {
-          class: "tab" + (y === active ? " active" : ""),
-          text: y.label,
-          role: "tab",
-          "aria-selected": y === active ? "true" : "false",
-        });
+      EDUCATION.forEach(function (y, index) {
+        var isActive = index === activeIndex;
+        var t = el(
+          "button",
+          {
+            class: "tab" + (isActive ? " active" : ""),
+            text: y.label,
+            type: "button",
+            role: "tab",
+            id: "year-tab-" + y.year,
+            "aria-controls": "modules-grid",
+            "aria-selected": isActive ? "true" : "false",
+            tabindex: isActive ? "0" : "-1",
+          },
+          undefined,
+        );
         t.addEventListener("click", function () {
-          active = y;
-          paintTabs();
-          paintModules();
+          selectYear(index, true);
+        });
+        t.addEventListener("keydown", function (event) {
+          var nextIndex = activeIndex;
+          if (event.key === "ArrowRight") {
+            nextIndex = (activeIndex + 1) % EDUCATION.length;
+          } else if (event.key === "ArrowLeft") {
+            nextIndex = (activeIndex - 1 + EDUCATION.length) % EDUCATION.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = EDUCATION.length - 1;
+          } else {
+            return;
+          }
+          event.preventDefault();
+          selectYear(nextIndex, true);
         });
         tabs.appendChild(t);
       });
     }
 
     function paintModules() {
+      var active = EDUCATION[activeIndex];
       grid.innerHTML = "";
+      grid.setAttribute("aria-labelledby", "year-tab-" + active.year);
       active.modules.forEach(function (m) {
-        var card = el("div", { class: "module-card" });
+        var card = el("article", { class: "module-card" });
         card.appendChild(el("h3", { text: m.name }));
         grid.appendChild(card);
       });
@@ -143,20 +186,26 @@
 
   /* ---------- Projects ---------- */
   function createProjectElement(project) {
-    var card = el("div", { class: "project-card reveal" });
+    var card = el("article", { class: "project-card reveal" });
     if (project.language) card.setAttribute("data-language", project.language);
 
     var head = el("div", { class: "project-head" });
-    var name = el("a", {
+    var heading = el("h3");
+    var name = el(project.url ? "a" : "span", {
       class: "project-name",
       text: project.name || "Unnamed Project",
-      href: project.url || "#",
     });
     if (project.url) {
+      name.href = project.url;
       name.target = "_blank";
       name.rel = "noopener noreferrer";
+      name.setAttribute(
+        "aria-label",
+        "Open " + (project.name || "project") + " (opens in a new tab)",
+      );
     }
-    head.appendChild(name);
+    heading.appendChild(name);
+    head.appendChild(heading);
 
     var meta = LANG_META[(project.language || "").toLowerCase()];
     if (meta) {
@@ -168,10 +217,29 @@
     card.appendChild(head);
 
     if (project.description) {
-      // innerHTML so descriptions containing links (e.g. Hyperemu demo) render correctly.
       card.appendChild(
-        el("p", { class: "project-description", html: project.description }),
+        el("p", { class: "project-description", text: project.description }),
       );
+    }
+
+    if (Array.isArray(project.links) && project.links.length > 0) {
+      var links = el("nav", {
+        class: "project-links",
+        "aria-label": "Project links",
+      });
+      project.links.forEach(function (link) {
+        if (!link || !link.url || !link.label) return;
+        links.appendChild(
+          el("a", {
+            text: link.label + " ↗",
+            href: link.url,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            "aria-label": link.label + " (opens in a new tab)",
+          }),
+        );
+      });
+      if (links.children.length > 0) card.appendChild(links);
     }
 
     if (project.codeSnippet && project.codeSnippet.length > 0) {
@@ -191,12 +259,16 @@
 
     if (project.imageSources && project.imageSources.length > 0) {
       var imgs = el("div", { class: "project-images-container" });
-      project.imageSources.forEach(function (src) {
+      project.imageSources.forEach(function (src, index) {
         var img = el("img", {
           class: "project-image",
           src: src,
-          alt: project.imageAlt || "Image for " + (project.name || "project"),
+          alt:
+            (project.imageAlts && project.imageAlts[index]) ||
+            project.imageAlt ||
+            "Screenshot of " + (project.name || "the project"),
           loading: "lazy",
+          decoding: "async",
         });
         img.addEventListener("error", function () {
           img.style.display = "none";
@@ -213,6 +285,13 @@
     var container = document.getElementById("projects-container");
     if (!container) return;
     container.innerHTML = "";
+    container.setAttribute("aria-busy", "false");
+    if (projects.length === 0) {
+      container.appendChild(
+        el("p", { class: "loading-message", text: "No projects found." }),
+      );
+      return;
+    }
     projects.forEach(function (p) {
       container.appendChild(createProjectElement(p));
     });
@@ -236,16 +315,16 @@
       var t = el("button", {
         class: "tab" + (active ? " active" : ""),
         text: label,
-        role: "tab",
-        "aria-selected": active ? "true" : "false",
+        type: "button",
+        "aria-pressed": active ? "true" : "false",
       });
       t.addEventListener("click", function () {
         tabs.querySelectorAll(".tab").forEach(function (x) {
           x.classList.remove("active");
-          x.setAttribute("aria-selected", "false");
+          x.setAttribute("aria-pressed", "false");
         });
         t.classList.add("active");
-        t.setAttribute("aria-selected", "true");
+        t.setAttribute("aria-pressed", "true");
         var filtered =
           key === "all"
             ? projects
@@ -294,6 +373,7 @@
         console.error("Could not load projects:", err);
         if (container) {
           container.innerHTML = `<p class="error-message">Failed to load projects. Please try again later.</p>`;
+          container.setAttribute("aria-busy", "false");
         }
       });
   }
@@ -305,23 +385,39 @@
     var header = document.getElementById("header");
 
     if (toggle && nav) {
+      function closeMenu(returnFocus) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+        if (returnFocus) toggle.focus();
+      }
+
       toggle.addEventListener("click", function () {
         var open = nav.classList.toggle("open");
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        toggle.querySelector(".icon-menu").style.display = open
-          ? "none"
-          : "block";
-        toggle.querySelector(".icon-close").style.display = open
-          ? "block"
-          : "none";
+        toggle.setAttribute(
+          "aria-label",
+          open ? "Close navigation" : "Open navigation",
+        );
       });
       nav.querySelectorAll("a").forEach(function (a) {
         a.addEventListener("click", function () {
-          nav.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-          toggle.querySelector(".icon-menu").style.display = "block";
-          toggle.querySelector(".icon-close").style.display = "none";
+          closeMenu(false);
         });
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && nav.classList.contains("open")) {
+          closeMenu(true);
+        }
+      });
+      document.addEventListener("click", function (event) {
+        if (
+          nav.classList.contains("open") &&
+          !nav.contains(event.target) &&
+          !toggle.contains(event.target)
+        ) {
+          closeMenu(false);
+        }
       });
     }
 
@@ -351,7 +447,10 @@
             if (e.isIntersecting) {
               var id = "#" + e.target.id;
               links.forEach(function (l) {
-                l.classList.toggle("active", l.getAttribute("href") === id);
+                var isActive = l.getAttribute("href") === id;
+                l.classList.toggle("active", isActive);
+                if (isActive) l.setAttribute("aria-current", "page");
+                else l.removeAttribute("aria-current");
               });
             }
           });
@@ -383,23 +482,34 @@
   /* ---------- Theme toggle ---------- */
   function setupTheme() {
     var toggle = document.getElementById("theme-toggle");
-    var sun = document.querySelector("#theme-toggle .icon-sun");
-    var moon = document.querySelector("#theme-toggle .icon-moon");
+    var themeColour = document.querySelector('meta[name="theme-color"]');
 
+    /** @arg {"light" | "dark"}  theme */
     function apply(theme) {
       document.documentElement.setAttribute("data-theme", theme);
       try {
         localStorage.setItem("theme", theme);
       } catch (e) {}
-      if (sun && moon) {
-        sun.style.display = theme === "dark" ? "block" : "none";
-        moon.style.display = theme === "dark" ? "none" : "block";
+      if (toggle) {
+        var nextTheme = theme === "dark" ? "light" : "dark";
+        toggle.setAttribute("aria-label", "Dark theme");
+        toggle.setAttribute("title", "Switch to " + nextTheme + " theme");
+        toggle.setAttribute(
+          "aria-pressed",
+          theme === "dark" ? "true" : "false",
+        );
+      }
+      if (themeColour) {
+        themeColour.setAttribute(
+          "content",
+          theme === "dark" ? "#0c1311" : "#f7faf9",
+        );
       }
     }
 
-    var saved = "dark";
+    var saved = document.documentElement.getAttribute("data-theme") || "light";
     try {
-      saved = localStorage.getItem("theme") || "dark";
+      saved = localStorage.getItem("theme") || saved;
     } catch (e) {}
     apply(saved);
 
@@ -417,7 +527,7 @@
     window.addEventListener(
       "scroll",
       function () {
-        btn.style.display = window.scrollY > 400 ? "grid" : "none";
+        btn.hidden = window.scrollY <= 400;
       },
       { passive: true },
     );
@@ -427,7 +537,8 @@
   }
 
   /* ---------- Scroll reveal ---------- */
-  var revealObserver = null;
+  /** @type {{ unobserve: (a0:any)=>any, observe: (a0:any)=>any }} */
+  var revealObserver;
   function observeReveal() {
     var items = document.querySelectorAll(".reveal:not(.in)");
     if (!items.length) return;
@@ -458,7 +569,9 @@
   /* ---------- Init ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     var year = document.getElementById("current-year");
-    if (year) year.textContent = new Date().getFullYear();
+    if (year) {
+      year.textContent = `${new Date().getFullYear()}`;
+    }
 
     setupTheme();
     setupNavigation();

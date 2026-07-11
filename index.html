@@ -8,10 +8,7 @@
       content="Personal portfolio of Robert Williamson, a Computer Science graduate from Queen's University Belfast, showcasing projects and skills."
     />
     <meta name="author" content="Robert Williamson" />
-    <meta
-      name="keywords"
-      content="Robert Williamson, Computer Science, Queen's University Belfast, Software Engineer, C++, Rust, Python, JavaScript, Portfolio"
-    />
+    <meta name="theme-color" content="#0c1311" />
     <meta
       property="og:title"
       content="Robert Williamson — Computer Science Graduate"
@@ -23,6 +20,21 @@
     <meta property="og:type" content="website" />
     <title>Robert Williamson | Computer Science Graduate</title>
 
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem("theme");
+          var preferredTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+          document.documentElement.dataset.theme = savedTheme || preferredTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2310b981'/%3E%3Ctext x='50' y='68' font-size='54' font-family='monospace' font-weight='700' text-anchor='middle' fill='white'%3ER%3C/text%3E%3C/svg%3E"
@@ -30,12 +42,6 @@
     />
 
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Prism syntax highlighting theme -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
-    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,13 +66,16 @@
         </a>
 
         <button
+          type="button"
           class="menu-toggle"
-          aria-label="Toggle navigation"
+          aria-label="Open navigation"
           aria-expanded="false"
           aria-controls="primary-navigation"
         >
           <svg
             class="icon-menu"
+            aria-hidden="true"
+            focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -83,6 +92,8 @@
           </svg>
           <svg
             class="icon-close"
+            aria-hidden="true"
+            focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -92,7 +103,6 @@
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            style="display: none"
           >
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -113,6 +123,8 @@
                 rel="noopener noreferrer"
               >
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="18"
@@ -160,6 +172,15 @@
               <span class="stat-num">BSc</span>
               <span class="stat-label">Computer Science</span>
             </div>
+            <div class="stat" role="listitem">
+              <span class="stat-num">Belfast</span>
+              <span class="stat-label">United Kingdom</span>
+            </div>
+            <!-- Do we really want this? -->
+            <!-- <div class="stat" role="listitem">
+              <span class="stat-num">C++ &amp; Rust</span>
+              <span class="stat-label">Systems focus</span>
+            </div> -->
           </div>
         </div>
       </section>
@@ -174,15 +195,17 @@
           <div class="about-grid">
             <div class="about-bio">
               <p>
-                I have graduated from Queen&rsquo;s University Belfast with a
-                BSc in Computer Science. I have a strong interest in web
-                development, high-performance applications, and low-level
-                systems programming. My goal is to become a well-established
-                professional in the field of Software Engineering.
+                I&rsquo;m a Computer Science graduate from Queen&rsquo;s
+                University Belfast with a strong interest in web development,
+                high-performance applications, and low-level systems
+                programming. I enjoy turning complex technical problems into
+                reliable, practical software.
               </p>
               <ul class="about-meta">
                 <li>
                   <svg
+                    aria-hidden="true"
+                    focusable="false"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"
@@ -200,6 +223,8 @@
                 </li>
                 <li>
                   <svg
+                    aria-hidden="true"
+                    focusable="false"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"
@@ -217,6 +242,8 @@
                 </li>
                 <li>
                   <svg
+                    aria-hidden="true"
+                    focusable="false"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
                     height="18"
@@ -275,7 +302,12 @@
             role="tablist"
             aria-label="Year of study"
           ></div>
-          <div class="modules-grid" id="modules-grid"></div>
+          <div
+            class="modules-grid"
+            id="modules-grid"
+            role="tabpanel"
+            tabindex="0"
+          ></div>
 
           <div class="project-note" id="year3-note" hidden>
             <strong>Final-year project:</strong> ARMv7 Architecture Emulator
@@ -300,16 +332,22 @@
           <div
             class="language-tabs"
             id="language-tabs"
-            role="tablist"
+            role="group"
             aria-label="Filter projects by language"
           ></div>
           <div
             class="projects-container"
             id="projects-container"
             aria-live="polite"
+            aria-busy="true"
           >
             <p class="loading-message">Loading projects…</p>
           </div>
+          <noscript>
+            <p class="error-message">
+              JavaScript is required to load the project list.
+            </p>
+          </noscript>
         </div>
       </section>
 
@@ -329,6 +367,8 @@
             <a class="contact-card" href="mailto:robert11122002@gmail.com">
               <span class="contact-icon-wrap">
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
                   height="22"
@@ -356,9 +396,12 @@
               href="https://www.linkedin.com/in/robert-williamson-51bb1322b/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Robert Williamson on LinkedIn (opens in a new tab)"
             >
               <span class="contact-icon-wrap">
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
                   height="22"
@@ -387,9 +430,12 @@
               href="https://github.com/Robby-cell"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Robby-cell on GitHub (opens in a new tab)"
             >
               <span class="contact-icon-wrap">
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
                   height="22"
@@ -418,7 +464,7 @@
     <footer class="footer">
       <div class="container footer-inner">
         <p>
-          &copy; <span id="current-year">2025</span> Robert Williamson. All
+          &copy; <span id="current-year">2026</span> Robert Williamson. All
           rights reserved.
         </p>
         <p class="footer-built">Built with HTML, CSS &amp; JavaScript.</p>
@@ -426,13 +472,16 @@
     </footer>
 
     <button
+      type="button"
       id="theme-toggle"
       class="fab fab-theme"
-      aria-label="Toggle colour theme"
-      title="Toggle theme"
+      aria-label="Dark theme"
+      title="Switch colour theme"
     >
       <svg
         class="icon-sun"
+        aria-hidden="true"
+        focusable="false"
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"
@@ -455,6 +504,8 @@
       </svg>
       <svg
         class="icon-moon"
+        aria-hidden="true"
+        focusable="false"
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"
@@ -464,20 +515,22 @@
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        style="display: none"
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </button>
 
     <button
+      type="button"
       id="back-to-top"
       class="fab fab-top"
       aria-label="Back to top"
       title="Back to top"
-      style="display: none"
+      hidden
     >
       <svg
+        aria-hidden="true"
+        focusable="false"
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"
@@ -492,15 +545,7 @@
       </svg>
     </button>
 
-    <!-- Prism: core + autoloader for language components (cpp, rust, python, javascript) -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
-      defer
-    ></script>
+    <script src="js/prism.js" defer></script>
     <script src="js/script.js" defer></script>
   </body>
 </html>

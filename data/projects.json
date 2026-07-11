@@ -2,14 +2,21 @@
     {
         "name": "Hyperemu",
         "url": "https://github.com/Robby-cell/hyperemu-gui",
-        "description": "A functional emulator for the ARMv7 (expanded to include x86 and RISC-V) architecture written in Rust. Capable of decoding and executing ARM instructions, managing memory registers, and simulating system behavior for educational and testing purposes. Live demo available on <a href='https://robby-cell.github.io/hyperemu-gui/' target='_blank'>Github Pages</a>.",
+        "description": "A functional emulator for ARMv7, x86, and RISC-V written in Rust. It decodes and executes instructions, manages memory and registers, and simulates system behaviour for education and testing.",
         "language": "rust",
-        "imageSources": ["data/images/hyperemu-example.png"]
+        "links": [
+            {
+                "label": "Try the live demo",
+                "url": "https://robby-cell.github.io/hyperemu-gui/"
+            }
+        ],
+        "imageSources": ["data/images/hyperemu-example.png"],
+        "imageAlt": "Hyperemu interface showing an emulation session"
     },
     {
         "name": "Variant",
         "url": "https://github.com/Robby-cell/variant",
-        "description": "A header only implementation of std::variant that works for C++14.",
+        "description": "A header-only implementation of std::variant that works with C++14.",
         "codeSnippet": [
             "#include <iostream>",
             "#include <string>",
@@ -36,6 +43,11 @@
             "https://github.com/Robby-cell/Remindify/raw/main/images/HomeScreenEmptyChat.png",
             "https://github.com/Robby-cell/Remindify/raw/main/images/AddingAllDayEvent.png",
             "https://github.com/Robby-cell/Remindify/raw/main/images/EventAdded.png"
+        ],
+        "imageAlts": [
+            "Remindify home screen with an empty chat",
+            "Remindify chat adding an all-day calendar event",
+            "Remindify confirmation after adding an event"
         ]
     },
     {
@@ -43,7 +55,8 @@
         "url": "https://github.com/Robby-cell/git-app",
         "description": "A simple git client that allows you to manage git repositories through a graphical interface.",
         "language": "python",
-        "imageSources": ["https://github.com/Robby-cell/git-app/raw/main/assets/image.png"]
+        "imageSources": ["https://github.com/Robby-cell/git-app/raw/main/assets/image.png"],
+        "imageAlt": "Git App desktop interface for managing a repository"
     },
     {
         "name": "Space",
@@ -73,6 +86,7 @@
             "}"
         ],
         "language": "cpp",
-        "imageSources": ["data/images/assert-example.png"]
+        "imageSources": ["data/images/assert-example.png"],
+        "imageAlt": "Terminal output from the Assert C++ testing framework"
     }
 ]
